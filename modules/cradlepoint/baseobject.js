@@ -1,4 +1,6 @@
  
+
+let g = "gg";
  /**
  * Base object used to factor out behavior that is shared accross
  * all objects (device APIs)
@@ -29,7 +31,7 @@ function BaseObject(dto, client, manager) {
     this.client = client;
   }
 }
-
+//testing 
 BaseObject.prototype._getExcludedField = function() {
   throw new Error("Not implemented");
 };
