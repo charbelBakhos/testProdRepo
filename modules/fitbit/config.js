@@ -14,7 +14,7 @@ var accessTokenUrl = "https://api.fitbit.com/oauth2/token";
 
 // OAuth 2.0 Client ID
 var client_id = "235LKS"; // example
-
+//testing
 // Client (consumer) secret
 var client_secret = "d5esf1be67910cdxe564ebbvd40b67j5b"; // example
 
@@ -55,3 +55,4 @@ function getFitbitAuthUrl() {
     "state": state
   }
 }		   				   				
+let x = "123";
