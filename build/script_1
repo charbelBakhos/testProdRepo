@@ -1,0 +1,48 @@
+ var scriptName='script_1';
+ var stores = require("store");
+ var pubsub = require("pubsub");
+ var devices = require("device");
+ var util = require("./util");
+ function run(stopOnError, errorMessages){ 
+ var parameters="";
+ var response=""; 
+parameters={"groupName":"editor"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "editor");
+parameters={"groupName":"groupAA"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "groupAA");
+parameters={"groupName":"groupB"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "groupB");
+parameters={"groupName":"script-execute"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "script-execute");
+parameters={"groupName":"script-read"};
+util.callApi("SaveGroup", parameters, null, errorMessages, stopOnError, scriptName, "script-read");
+ response =  stores.create("myStore",{"isStoreSearchable":"false"});
+util.handleResponse(response, errorMessages, stopOnError, "stores.save", scriptName, "myStore");
+util.callApi("SaveConfiguration", {"apsdb.defaultResponseType":"JSON","apsdb.defaultRepositoryName":"testProdRepo","apsdb.defaultRepositoryOwner":"charbelBakhos","apsdb.defaultRepositoryBranch":"master","apsdb.defaultRepositoryAccessToken":"39bd7745a354e4c7a76cc828cd577252bad83774","apsdb.defaultReadACL":"scriptr","apsdb.disableSchemalessDocs":"true","apsdb.optionalBindReferrer":"false","apsdb.defaultTokenExpires":"1800","apsdb.maximumTokenExpires":"86400","apsdb.defaultTokenLifeTime":"7200","apsdb.maximumTokenLifeTime":"604800","apsdb.allowForce200ResponseStatus":"true","apsdb.useDeprecatedSocialApis":"false","apsdb.accessControlAllowOrigin":"*,https://www.scriptr.io","apsdb.facebookConsumerKey":"fgsdfsdf","apsdb.facebookConsumerSecret":"fsdfsdf","apsdb.facebookAccessToken":"sdfsdf","apsdb.twitterConsumerKey":"fsdfsd","apsdb.twitterConsumerSecret":"sdfsdfsd","apsdb.twitterAccessToken":"fsdfsd","apsdb.twitterAccessTokenSecret":"sfdsf","apsdb.default404File":"htmlTest","apsdb.isQueuingEnabled":"false","apsdb.P3P":""}, null, errorMessages, stopOnError, scriptName, "");
+util.callApi("SaveConfiguration", {"apsdb.DefaultStore.deleteDocumentACL":"nobody","apsdb.DefaultStore.getFileACL":"nobody","apsdb.DefaultStore.saveDocumentACL":"nobody","apsdb.DefaultStore.queryACL":"nobody"}, null, errorMessages, stopOnError, scriptName, "DefaultStore");
+util.callApi("SaveConfiguration", {"apsdb.myStore.getFileACL":"authenticated","apsdb.myStore.saveDocumentACL":"authenticated","apsdb.myStore.queryACL":"authenticated","apsdb.myStore.deleteDocumentACL":"authenticated"}, null, errorMessages, stopOnError, scriptName, "myStore");
+var channel_options={  "subscribeACL": "anonymous", "publishACL": "authenticated" }
+response =  pubsub.createChannel("sa",channel_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "sa");
+var channel_options={  "subscribeACL": "anonymous", "publishACL": "anonymous" }
+response =  pubsub.createChannel("batata",channel_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "batata");
+var channel_options={  "subscribeACL": "anonymous", "publishACL": "authenticated" }
+response =  pubsub.createChannel("channel",channel_options);
+util.handleResponse(response, errorMessages, stopOnError, "pubsub.createChannel", scriptName, "channel");
+util.callApi("SaveUser", {"password":"jean","name":"jean","id":"jean","email":"jean@test.com"}, null, errorMessages, stopOnError, scriptName, "jean");
+util.callApi("SaveUser", {"password":"user2","groups":"groupAA","jjj":"jjjj","name":"user2","id":"user2","email":"user2@test.com"}, null, errorMessages, stopOnError, scriptName, "user2");
+util.callApi("SaveUser", {"password":"user1","name":"user1","id":"user1"}, null, errorMessages, stopOnError, scriptName, "user1");
+response = devices.save({"password":"dev2","name":"dev2","id":"dev2"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "dev2");
+response = devices.generateToken("dev2");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "dev2");
+response = devices.save({"password":"dev1","groups":"editor","name":"dev1","id":"dev1"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "dev1");
+response = devices.generateToken("dev1");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "dev1");
+response = devices.save({"password":"DeviceA","description":"this is DeviceA","groups":"groupAA","name":"DeviceA","id":"DeviceA"});
+util.handleResponse(response, errorMessages, stopOnError, "devices.save", scriptName, "DeviceA");
+response = devices.generateToken("DeviceA");
+util.handleResponse(response, errorMessages, stopOnError, "devices.generateToken", scriptName, "DeviceA");
+ }
