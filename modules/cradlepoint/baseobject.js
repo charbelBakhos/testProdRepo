@@ -61,3 +61,5 @@ BaseObject.prototype._copyData = function(source, target){
   
   return target;
 };
+
+let m = "mm";
