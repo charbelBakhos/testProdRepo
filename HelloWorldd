@@ -1,3 +1,0 @@
-console.log(2);
-response.write(333);
-return 2;
