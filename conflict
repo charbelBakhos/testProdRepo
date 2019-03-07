@@ -1,5 +1,5 @@
 var clientModule = require("./client.js");
-var util = require("./util.jssssss");
+var util = require("./util.js");
 
 /**
  * Provides shared behavior accross all xxxmanagers
