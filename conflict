@@ -1,5 +1,5 @@
 var clientModule = require("./client.js");
-var util = require("./util.js");
+var util = require("./util.jssssss");
 
 /**
  * Provides shared behavior accross all xxxmanagers
@@ -87,7 +87,7 @@ ObjectManager.prototype.getObject = function(dto) {
   var dataJson = this.listObjects({filter:filter}).data[0];
   return util.jsonToClassInstance(dataJson, this.managedType, this.client);
 };
-
+// return 6666666;
 /**
  * Static method that returns a list of xxx objects (@see listObjects). 
  * Can be called as a utility function
@@ -100,7 +100,7 @@ function sListObjects(dto, path, client, managedType) {
   if (dto.paging) {
     url = dto.paging.next ? dto.paging.next : (dto.paging.previous ? dto.paging.previous : url);
   }
-  
+  var x = 1;
   var requestParams = {    
     url: url,
     method: "GET"
